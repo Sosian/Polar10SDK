@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\flori\\Documents\\DanceSensors\\PolarH10\\PolarH10.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\flori\\Documents\\DanceSensors\\PolarH10\\PolarH10.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\flori\\Documents\\DanceSensors\\PolarH10\\PolarH10.csproj",
+        "projectName": "PolarH10",
+        "projectPath": "C:\\Users\\flori\\Documents\\DanceSensors\\PolarH10\\PolarH10.csproj",
+        "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\flori\\Documents\\DanceSensors\\PolarH10\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\flori\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows10.0.22000.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows10.0.22000": {
+            "targetAlias": "net6.0-windows10.0.22000.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows10.0.22000": {
+          "targetAlias": "net6.0-windows10.0.22000.0",
+          "dependencies": {
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.Windows.SDK.NET.Ref",
+              "version": "[10.0.22000.28, 10.0.22000.28]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.Windows.SDK.NET.Ref": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
