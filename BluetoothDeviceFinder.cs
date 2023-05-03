@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
-using Windows.Foundation;
 
 namespace PolarH10
 {
@@ -18,7 +17,7 @@ namespace PolarH10
         {
             var foundDevices = GetDevicesInternal();
 
-            _logger.LogDebug($"Found {foundDevices.Count} heart rate capable devices");
+            _logger.LogDebug($"Found {foundDevices.Count} devices, picking the first");
             foreach (DeviceInformation device in foundDevices.ToList())
             {
                 _logger.LogDebug($"{device.Name}: " +
