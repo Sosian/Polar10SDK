@@ -7,8 +7,7 @@ namespace PolarH10
     public class PolarH10Bluetooth : BleGattBase
     {
         private readonly ILogger<PolarH10Bluetooth> logger;
-        Guid BODY_SENSOR_LOCATION = new Guid("00002a38-0000-1000-8000-00805f9b34fb");
-        Guid HR_MEASUREMENT = new Guid("00002a37-0000-1000-8000-00805f9b34fb");
+        Guid HR_MEASUREMENT_CHARACTERISTIC = new Guid("00002a37-0000-1000-8000-00805f9b34fb");
         Guid HR_SERVICE = new Guid("0000180D-0000-1000-8000-00805f9b34fb");
 
         private readonly BleDeviceSession deviceSession;
@@ -30,8 +29,8 @@ namespace PolarH10
         {          
             try
             {
-                await deviceSession.setCharacteristicNotify(HR_SERVICE, HR_MEASUREMENT, true);
-                var characteristic = deviceSession.GetCharacteristic (HR_MEASUREMENT);
+                await deviceSession.setCharacteristicNotify(HR_SERVICE, HR_MEASUREMENT_CHARACTERISTIC, true);
+                var characteristic = deviceSession.GetCharacteristic (HR_MEASUREMENT_CHARACTERISTIC);
                 characteristic.ValueChanged += Characteristic_ValueChanged;
             }
             catch (Exception e)
