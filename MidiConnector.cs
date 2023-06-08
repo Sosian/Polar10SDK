@@ -1,6 +1,6 @@
 namespace PolarH10
 {
-    public class MidiConnector
+    public class MidiConnector : IConnector
     {
         private readonly MidiSender midiSender;
 

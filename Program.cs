@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using IHost host = Host.CreateDefaultBuilder(args).Build();
 
 var bluetoothDeviceFinder = new BluetoothDeviceFinder(host.Services.GetRequiredService<ILogger<BluetoothDeviceFinder>>());
-var midiSender = new MidiSender();
+var midiSender = new MidiSender("loopMIDI Port");
 var midiConnector = new MidiConnector(midiSender);
 
 var device = bluetoothDeviceFinder.GetDevice();

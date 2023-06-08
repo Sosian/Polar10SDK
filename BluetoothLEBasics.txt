@@ -3,6 +3,7 @@ Bluetooth LE devices expose their functionality through a collection of:
 Services
 Characteristics
 Descriptors
+
 Services define the functional contract of the LE device and contain a collection of characteristics that define the service. Those characteristics, in turn, contain descriptors that describe the characteristics. These 3 terms are generically known as the attributes of a device.
 
 The Bluetooth LE GATT APIs expose objects and functions, rather than access to the raw transport. The GATT APIs also enable developers to work with Bluetooth LE devices with the ability to perform the following tasks:
