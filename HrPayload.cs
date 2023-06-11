@@ -8,5 +8,10 @@ namespace PolarH10
         {
             this.Heartrate = heartrate;
         }
+
+        public override string ToString()
+        {
+            return Heartrate.ToString();
+        }
     }
 }

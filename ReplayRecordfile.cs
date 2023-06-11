@@ -34,8 +34,11 @@ namespace PolarH10
             {
                 Thread.Sleep(waitIntervalMiliseconds);
 
+
                 if (currentPackage.elapsedMilliseconds <= stopwatch.ElapsedMilliseconds)
                 {
+                    logger.LogDebug("Elapsed Milliseconds: " + stopwatch.ElapsedMilliseconds);
+                    logger.LogDebug("Send Package: " + currentPackage.heartrate);
                     midiConnector.ReceiveData(new HrPayload(currentPackage.heartrate));
                     index++;
                     currentPackage = listOfParsedReceivedPackages[index];

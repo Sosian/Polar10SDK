@@ -2,14 +2,50 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using IHost host = Host.CreateDefaultBuilder(args).Build();
 
-var bluetoothDeviceFinder = new BluetoothDeviceFinder(host.Services.GetRequiredService<ILogger<BluetoothDeviceFinder>>());
-var midiSender = new MidiSender("loopMIDI Port");
-var midiConnector = new MidiConnector(midiSender);
 
-var device = bluetoothDeviceFinder.GetDevice();
-var polarH10Bluetooth = new PolarH10Bluetooth(host.Services.GetRequiredService<ILogger<PolarH10Bluetooth>>(), new BleDeviceSession(host.Services.GetRequiredService<ILogger<BleDeviceSession>>(), device), midiConnector);
-polarH10Bluetooth.Start();
+namespace PolarH10
+{
+    public class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            using IHost host = Host.CreateDefaultBuilder(args).Build();
+            var mode = args[0];
+            var bluetoothDeviceRequired = (mode == "Record" || mode == "Live");
 
-await host.RunAsync();
+            var midiSender = new MidiSender("loopMIDI Port");
+            var midiConnector = new MidiConnector(midiSender);
+            var recordConnecter = new RecordConnector(@"C:\Users\flori\Documents\DanceSensors\PolarH10\Records");
+
+            if (bluetoothDeviceRequired)
+            {
+                var bluetoothDeviceFinder = new BluetoothDeviceFinder(host.Services.GetRequiredService<ILogger<BluetoothDeviceFinder>>());
+                var bluetoothDevice = bluetoothDeviceFinder.GetDevice();
+                var bluetoothDeviceSession = new BleDeviceSession(host.Services.GetRequiredService<ILogger<BleDeviceSession>>(), bluetoothDevice);
+
+                PolarH10Bluetooth polarH10Bluetooth;
+
+                if (mode == "Record")
+                    polarH10Bluetooth = new PolarH10Bluetooth(host.Services.GetRequiredService<ILogger<PolarH10Bluetooth>>(), bluetoothDeviceSession, recordConnecter);
+                else if (mode == "Live")
+                    polarH10Bluetooth = new PolarH10Bluetooth(host.Services.GetRequiredService<ILogger<PolarH10Bluetooth>>(), bluetoothDeviceSession, midiConnector);
+                else
+                    throw new Exception($"Argument '{args[0]}' not supported.");
+
+                polarH10Bluetooth.Start();
+            }
+            else if (mode == "Replay")
+            {
+                var replayLogfile = new ReplayRecordfile(host.Services.GetRequiredService<ILogger<ReplayRecordfile>>(), midiConnector);
+                replayLogfile.Play(@"C:\Users\flori\Documents\DanceSensors\PolarH10\Records\20230611T1138");
+            }
+            else
+            {
+                throw new Exception("Please specify mode 'Record', 'Live' or 'Replay'");
+            }
+
+            await host.RunAsync();
+        }
+    }
+}

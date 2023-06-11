@@ -11,11 +11,11 @@ namespace PolarH10
         Guid HR_SERVICE = new Guid("0000180D-0000-1000-8000-00805f9b34fb");
 
         private readonly BleDeviceSession deviceSession;
-        private readonly MidiConnector midiConnector;
+        private readonly IConnector connector;
 
-        public PolarH10Bluetooth(ILogger<PolarH10Bluetooth> logger, BleDeviceSession deviceSession, MidiConnector midiConnector)
+        public PolarH10Bluetooth(ILogger<PolarH10Bluetooth> logger, BleDeviceSession deviceSession, IConnector connector)
         {
-            this.midiConnector = midiConnector;
+            this.connector = connector;
             this.logger = logger;
             this.deviceSession = deviceSession;
         }
@@ -88,7 +88,7 @@ namespace PolarH10
             var test = ($"heartRateMeasurementValue: {heartRateMeasurementValue}");
             logger.LogDebug($"Data = {test}");
 
-            midiConnector.ReceiveData(new HrPayload(heartRateMeasurementValue));
+            connector.ReceiveData(new HrPayload(heartRateMeasurementValue));
         }
 
         private int mapRr1024ToRrMs(int rrsRaw)

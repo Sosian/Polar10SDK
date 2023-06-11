@@ -10,7 +10,7 @@ namespace PolarH10
         public RecordConnector(string parentPath)
         {
             this.stopwatch = new Stopwatch();
-            this.fullPath = Path.Combine(parentPath, DateTime.Now.ToString();
+            this.fullPath = Path.Combine(parentPath, DateTime.Now.ToString("yyyyMMddTHHmm"));
         }
 
         public void ReceiveData(HrPayload hrPayload)
