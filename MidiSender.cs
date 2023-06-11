@@ -19,8 +19,8 @@ namespace PolarH10
         {
             using (var outputDevice = OutputDevice.GetByName(midiPortName))
             {
-                    outputDevice.SendEvent(new NoteOnEvent(new SevenBitNumber((byte)heartrate), new SevenBitNumber((byte)heartrate)));
-                    outputDevice.SendEvent(new NoteOffEvent(new SevenBitNumber((byte)heartrate), new SevenBitNumber((byte)heartrate)));
+                outputDevice.SendEvent(new NoteOnEvent(new SevenBitNumber((byte)heartrate), new SevenBitNumber((byte)heartrate)));
+                outputDevice.SendEvent(new NoteOffEvent(new SevenBitNumber((byte)heartrate), new SevenBitNumber((byte)heartrate)));
             }
         }
     }

@@ -6,10 +6,10 @@ namespace PolarH10
 
         public MidiConnector(MidiSender midiSender)
         {
-            this.midiSender = midiSender;    
+            this.midiSender = midiSender;
         }
 
-        public void ReceiveData (HrPayload hrPayload)
+        public void ReceiveData(HrPayload hrPayload)
         {
             midiSender.SendMidiMsg(hrPayload.Heartrate);
         }

@@ -13,7 +13,7 @@ namespace PolarH10
         private readonly BleDeviceSession deviceSession;
         private readonly MidiConnector midiConnector;
 
-        public PolarH10Bluetooth (ILogger<PolarH10Bluetooth> logger, BleDeviceSession deviceSession, MidiConnector midiConnector)
+        public PolarH10Bluetooth(ILogger<PolarH10Bluetooth> logger, BleDeviceSession deviceSession, MidiConnector midiConnector)
         {
             this.midiConnector = midiConnector;
             this.logger = logger;
@@ -26,11 +26,11 @@ namespace PolarH10
         }
 
         private async Task ConfigureServiceForNotificationsAsync()
-        {          
+        {
             try
             {
                 await deviceSession.setCharacteristicNotify(HR_SERVICE, HR_MEASUREMENT_CHARACTERISTIC, true);
-                var characteristic = deviceSession.GetCharacteristic (HR_MEASUREMENT_CHARACTERISTIC);
+                var characteristic = deviceSession.GetCharacteristic(HR_MEASUREMENT_CHARACTERISTIC);
                 characteristic.ValueChanged += Characteristic_ValueChanged;
             }
             catch (Exception e)
@@ -91,7 +91,7 @@ namespace PolarH10
             midiConnector.ReceiveData(new HrPayload(heartRateMeasurementValue));
         }
 
-        private int mapRr1024ToRrMs (int rrsRaw)
+        private int mapRr1024ToRrMs(int rrsRaw)
         {
             var rrsRawMapped = ((float)rrsRaw / 1024.0 * 1000.0);
             return (int)Math.Round(rrsRawMapped, 0);

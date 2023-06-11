@@ -19,12 +19,12 @@ namespace PolarH10
             characteristics = new List<GattCharacteristic>();
         }
 
-        public GattCharacteristic GetCharacteristic (Guid characteristicsUuid)
+        public GattCharacteristic GetCharacteristic(Guid characteristicsUuid)
         {
             return characteristics.Single(x => x.Uuid == characteristicsUuid);
         }
 
-        public async Task setCharacteristicNotify (Guid serviceUuid, Guid characteristicsUuid, bool enable)
+        public async Task setCharacteristicNotify(Guid serviceUuid, Guid characteristicsUuid, bool enable)
         {
             var bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(_device.Id);
 
@@ -44,21 +44,21 @@ namespace PolarH10
                             GattClientCharacteristicConfigurationDescriptorValue.Notify);
                     if (status == GattCommunicationStatus.Success)
                     {
-                        this.characteristics.Add (characteristic);
+                        this.characteristics.Add(characteristic);
                     }
                     else
                     {
-                        throw new Exception ($"Did not successfully communicated Notify. Status: {status}");
-                    }  
+                        throw new Exception($"Did not successfully communicated Notify. Status: {status}");
+                    }
                 }
                 else
                 {
-                    throw new Exception ($"Did not successfully get Characteristics. Status: {result2.Status}");
+                    throw new Exception($"Did not successfully get Characteristics. Status: {result2.Status}");
                 }
             }
             else
             {
-                throw new Exception ($"No Services discovered. Status: {result.Status}");   
+                throw new Exception($"No Services discovered. Status: {result.Status}");
             }
         }
     }

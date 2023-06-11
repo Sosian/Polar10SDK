@@ -8,7 +8,7 @@ namespace PolarH10
     {
         private readonly ILogger<BluetoothDeviceFinder> _logger;
 
-        public BluetoothDeviceFinder (ILogger<BluetoothDeviceFinder> logger)
+        public BluetoothDeviceFinder(ILogger<BluetoothDeviceFinder> logger)
         {
             _logger = logger;
         }
@@ -64,7 +64,7 @@ namespace PolarH10
 
             if (foundDevices == null)
                 throw new Exception("No Devices found");
-            
+
             return foundDevices;
         }
     }
