@@ -10,6 +10,12 @@ namespace PolarH10
     {
         public static async Task Main(string[] args)
         {
+            HubConnection connection= new HubConnectionBuilder()
+                .WithUrl(new Uri("http://127.0.0.1:5000"))
+                .WithAutomaticReconnect()
+                .Build();
+            //TODO More Connection handling stuff
+            
             using IHost host = Host.CreateDefaultBuilder(args).Build();
             var mode = args[0];
             var bluetoothDeviceRequired = (mode == "Record" || mode == "Live");
