@@ -1,17 +1,22 @@
-﻿using PolarH10;
+﻿using System;
+using HumanMusicController.Bluetooth;
+using HumanMusicController.Connectors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.SignalR.Client;
 
 
-namespace PolarH10
+namespace HumanMusicController
 {
     public class Program
     {
         public static async Task Main(string[] args)
         {
+            if (args.Count() == 0)
+                throw new Exception("Please specify mode 'Record', 'Live' or 'Replay'");
+
             using IHost host = Host.CreateDefaultBuilder(args).Build();
+
             var mode = args[0];
             var bluetoothDeviceRequired = (mode == "Record" || mode == "Live");
 

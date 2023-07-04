@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarH10", "PolarH10\PolarH10.csproj", "{5AD566B7-A55E-4D4E-B6C2-68672CCC619B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanMusicController", "HumanMusicController\HumanMusicController.csproj", "{5AD566B7-A55E-4D4E-B6C2-68672CCC619B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualizationServer", "VisualizationServer", "{423DC07C-BC78-4A98-87A8-E96E765B71F7}"
 EndProject

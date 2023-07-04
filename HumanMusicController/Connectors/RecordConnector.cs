@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace PolarH10
+namespace HumanMusicController.Connectors
 {
     public class RecordConnector : IConnector
     {

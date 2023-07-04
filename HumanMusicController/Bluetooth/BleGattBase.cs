@@ -1,4 +1,4 @@
-namespace PolarH10
+namespace HumanMusicController.Bluetooth
 {
     public abstract class BleGattBase
     {

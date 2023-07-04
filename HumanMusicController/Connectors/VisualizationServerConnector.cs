@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace PolarH10
+namespace HumanMusicController.Connectors
 {
     public class VisualizationServerConnector : IConnector
     {

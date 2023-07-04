@@ -1,8 +1,9 @@
 ﻿using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Storage.Streams;
 using Microsoft.Extensions.Logging;
+using HumanMusicController.Connectors;
 
-namespace PolarH10
+namespace HumanMusicController.Bluetooth
 {
     public class PolarH10Bluetooth : BleGattBase
     {

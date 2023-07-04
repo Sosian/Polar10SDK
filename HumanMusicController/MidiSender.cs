@@ -3,7 +3,7 @@ using Melanchall.DryWetMidi.Multimedia;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Common;
 
-namespace PolarH10
+namespace HumanMusicController
 {
     public class MidiSender
     {

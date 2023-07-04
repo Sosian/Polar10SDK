@@ -1,7 +1,8 @@
 using System.Diagnostics;
+using HumanMusicController.Connectors;
 using Microsoft.Extensions.Logging;
 
-namespace PolarH10
+namespace HumanMusicController
 {
     public class ReplayRecordfile
     {

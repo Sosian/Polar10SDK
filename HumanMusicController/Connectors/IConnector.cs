@@ -1,4 +1,4 @@
-namespace PolarH10
+namespace HumanMusicController.Connectors
 {
     public interface IConnector
     {
