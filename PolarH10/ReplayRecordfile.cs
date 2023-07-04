@@ -5,12 +5,12 @@ namespace PolarH10
 {
     public class ReplayRecordfile
     {
-        private readonly MidiConnector midiConnector;
+        private readonly IConnector connector;
         private readonly ILogger<ReplayRecordfile> logger;
 
-        public ReplayRecordfile(ILogger<ReplayRecordfile> logger, MidiConnector midiConnector)
+        public ReplayRecordfile(ILogger<ReplayRecordfile> logger, IConnector connector)
         {
-            this.midiConnector = midiConnector;
+            this.connector = connector;
             this.logger = logger;
         }
 
@@ -39,7 +39,7 @@ namespace PolarH10
                 {
                     logger.LogDebug("Elapsed Milliseconds: " + stopwatch.ElapsedMilliseconds);
                     logger.LogDebug("Send Package: " + currentPackage.heartrate);
-                    midiConnector.ReceiveData(new HrPayload(currentPackage.heartrate));
+                    connector.ReceiveData(new HrPayload(currentPackage.heartrate));
                     index++;
                     currentPackage = listOfParsedReceivedPackages[index];
                 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR.Client;
 
 
 namespace PolarH10
@@ -10,12 +11,6 @@ namespace PolarH10
     {
         public static async Task Main(string[] args)
         {
-            HubConnection connection= new HubConnectionBuilder()
-                .WithUrl(new Uri("http://127.0.0.1:5000"))
-                .WithAutomaticReconnect()
-                .Build();
-            //TODO More Connection handling stuff
-            
             using IHost host = Host.CreateDefaultBuilder(args).Build();
             var mode = args[0];
             var bluetoothDeviceRequired = (mode == "Record" || mode == "Live");
@@ -23,6 +18,7 @@ namespace PolarH10
             var midiSender = new MidiSender("loopMIDI Port");
             var midiConnector = new MidiConnector(midiSender);
             var recordConnecter = new RecordConnector(@"C:\Users\flori\Documents\DanceSensors\PolarH10\Records");
+            var visualizationServerConnector = new VisualizationServerConnector("http://localhost:5253/heartbeatHub");
 
             if (bluetoothDeviceRequired)
             {
@@ -43,7 +39,7 @@ namespace PolarH10
             }
             else if (mode == "Replay")
             {
-                var replayLogfile = new ReplayRecordfile(host.Services.GetRequiredService<ILogger<ReplayRecordfile>>(), midiConnector);
+                var replayLogfile = new ReplayRecordfile(host.Services.GetRequiredService<ILogger<ReplayRecordfile>>(), visualizationServerConnector);
                 replayLogfile.Play(@"C:\Users\flori\Documents\DanceSensors\PolarH10\Records\20230611T1138");
             }
             else
